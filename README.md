@@ -178,7 +178,7 @@ Now, we focus on the missingness of `DEMAND.LOSS.MW` in the dataset and test the
 
 Null hypothesis: the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing.
 Alternative hypothesis: the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is different from the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing.
-Test Statistics: Since `CLIMATE.REGION` is a categorical variable. We used Total variation distance (TVD) as the test statistics.
+Test Statistics: Since `CLIMATE.REGION` is a categorical variable, we used Total variation distance (TVD) as the test statistics.
 Observed Statistics: 0.23159749848146532
 
 We drew distribution plots of these two distributions.
@@ -187,18 +187,18 @@ We drew distribution plots of these two distributions.
 
 <iframe src="assets/region_demand_not_missing.html" width=800 height=600 frameBorder=0></iframe>
 
-We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 times and get 10000 simulating results of TVD. The red line marked the observed stat. 
+We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 times and get 10000 simulated results of TVD. The red line marked the observed stat. 
 
 <iframe src="assets/mar_depend.html" width=800 height=600 frameBorder=0></iframe>
 
-Finally, we calculate the p-value 0. when we use 0.05 as a significance threshold, since 0.0 <= 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`. TODO!
+Finally, we calculate that the p-value equals 0. when we use 0.05 as a significance threshold, since 0.0 $\leq$ 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`.
 
 > the missingness of `DEMAND.LOSS.MW` and `RES.PERCEN`
 
 Null hypothesis: the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing.
 Alternative hypothesis: the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is different from the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing.
-Test Statistics: Since `RES.PERCEN` is a numeric variable. We used Kolmogorov-Smirnov statistic as the test statistics.
-Observed Statistics: 0.05247542540358801
+Test Statistics: Since `RES.PERCEN` is a numeric variable, we used Kolmogorov-Smirnov statistic as the test statistics.
+Observed Statistics: 0.052475425403588016
 
 We also drew distribution plots of these two distributions. 
 
@@ -207,8 +207,9 @@ We also drew distribution plots of these two distributions.
 <iframe src="assets/res_percen_demand_not_missing.html" width=800 height=600 frameBorder=0></iframe>
 
 Under the hood, ks_2samp used permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` and got the p-value of 0.23392391909317375. 
+We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 times and get 10000 simulated results of Kolmogorov-Smirnov statistic. The red line marked the observed stat.
 
-<iframe src="assets/TODO" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/mar_not_depend.html" width=800 height=600 frameBorder=0></iframe>
 
 We use 0.05 as a significance threshold. Since the p-value 0.23 > 0.05, we fail to reject the null hypothesis that the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is not dependent on `RES.PERCEN`.
 
