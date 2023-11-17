@@ -224,9 +224,9 @@ We will conduct a permutation test.
 
 ### Setting Up the Testing
 
-Null Hypothesis $H_0$: The distribution of climate regions for outages caused by severe weather is the same in summer and in winter.
+Null Hypothesis: The distribution of climate regions for outages caused by severe weather is the same in summer and in winter.
 
-Alternative Hypothesis $H_1$: The distribution of climate regions for outages caused by severe weather is different in summer and in winter.
+Alternative Hypothesis: The distribution of climate regions for outages caused by severe weather is different in summer and in winter.
 
 We select only the useful columns and rows that correspond to outages caused by severe weather in summer or winter. The first few rows of this subset of data are shown below.
 
@@ -240,7 +240,7 @@ We select only the useful columns and rows that correspond to outages caused by 
 
 Since we are concerned with categorical data, it is proper to use TVD as the test statistics.
 
-We choose to perform a one-sided test because TVD only determines how different two distributions are. The greater the TVD, the greater the difference.
+We choose to perform an one-sided test because TVD only determines how different two distributions are. The greater the TVD, the greater the difference.
 
 The significant level we choose is `0.05`.
 
