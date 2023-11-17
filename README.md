@@ -6,7 +6,7 @@ By Ylesia Wu & Junyue Lin
 
 ## Introduction
 
-A power outage is defined as the loss of the electrical power network supply to an end user. This occurrence engenders a disruption in the provision of electricity, leading to an absence of power in residences, commercial establishments, and other facilities. The ramifications of power outages encompass a spectrum of effects, including the loss of lighting, disruption of appliances and electronic devices, deprivation of heating or cooling services, compromised communication, interruption of essential services, and the spoilage of perishable goods. Consequently, it is necessary to examine the patterns associated with power outages to formulate effective responses to such events.
+A power outage is defined as the loss of the electrical power network supply to an end user. This occurrence engenders a disruption in the provision of electricity, leading to an absence of power in residences, commercial establishments, and other facilities. The ramifications of power outages encompass a spectrum of effects, including the loss of lighting, disruption of appliances and electronic devices, deprivation of heating or cooling services, compromised communication, interruption of essential services, and the spoilage of perishable goods. Power outages might potentially impact individuals' lives and lead to financial loss. Consequently, it is necessary to examine the patterns associated with the cause of power outages to formulate effective responses to such events.
 
 The dataset is [sourced](https://engineering.purdue.edu/LASCI/research-data/outages) from an article entitled “A Multi-Hazard Approach to Assess Severe Weather-Induced Major Power Outage Risks in the U.S.” (Mukherjee et al., 2018). The data pertains to the major outages witnessed by different states in the continental U.S. from January 2000 to July 2016. Moreover, this data also presents on geographical location of the outages, date and time of the outages, regional climatic information, land-use characteristics, electricity consumption patterns, and economic characteristics of the states affected by the outages.
 
@@ -32,7 +32,7 @@ We converted the data type of `YEAR` column to `int`. Next, we converted all oth
 
 > Create New `pd.Timestamp` columns by Combining Existing Columns
 
-We combined `OUTAGE.START.DATE` and `OUTAGE.START.TIME` into a new `pd.Timestamp` column called `OUTAGE.START`. We also did the same thing for `OUTAGE.RESTORATION.DATE`` and `OUTAGE.RESTORATION.TIME`, creating a new column called `OUTAGE.RESTORATION`.
+We combined `OUTAGE.START.DATE` and `OUTAGE.START.TIME` into a new `pd.Timestamp` column called `OUTAGE.START`. We also did the same thing for `OUTAGE.RESTORATION.DATE` and `OUTAGE.RESTORATION.TIME`, creating a new column called `OUTAGE.RESTORATION`.
 
 > Cleaning Result
 
@@ -178,10 +178,10 @@ Now, we focus on the missingness of `DEMAND.LOSS.MW` in the dataset and test the
 
 > the missingness of `DEMAND.LOSS.MW` and `CLIMATE.REGION`
 
-Null hypothesis: the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing.
-Alternative hypothesis: the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is different from the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing.
-Test Statistics: Since `CLIMATE.REGION` is a categorical variable, we will use Total variation distance (TVD) as the test statistics.
-Observed Statistics: 0.23159749848146532
+- Null hypothesis: the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing.
+- Alternative hypothesis: the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is different from the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing.
+- Test Statistics: Since `CLIMATE.REGION` is a categorical variable, we will use Total variation distance (TVD) as the test statistics.
+- Observed Statistics: 0.23159749848146532
 
 We draw distribution plots of these two distributions.
 
@@ -193,14 +193,14 @@ We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 ti
 
 <iframe src="assets/mar_depend.html" width=800 height=600 frameBorder=0></iframe>
 
-Finally, we get a p-value of 0. When using 0.05 as the significance level, since 0.0 $\leq$ 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`.
+Finally, we get a p-value of 0. When using 0.05 as the significance level, since 0.0 $\leq$ 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`. It is likely that certain states paid more attention to recording the demand loss whereas others found it less important. 
 
 > the missingness of `DEMAND.LOSS.MW` and `RES.PERCEN`
 
-Null hypothesis: the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing.
-Alternative hypothesis: the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is different from the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing.
-Test Statistics: Since `RES.PERCEN` is a numeric variable, we will use Kolmogorov-Smirnov statistic as the test statistics.
-Observed Statistics: 0.052475425403588016
+- Null hypothesis: the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing.
+- Alternative hypothesis: the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is different from the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing.
+- Test Statistics: Since `RES.PERCEN` is a numeric variable, we will use Kolmogorov-Smirnov statistic as the test statistics.
+- Observed Statistics: 0.052475425403588016
 
 We also draw distribution plots of these two distributions. 
 
@@ -228,7 +228,7 @@ Null Hypothesis $H_0$: The distribution of climate regions for outages caused by
 
 Alternative Hypothesis $H_1$: The distribution of climate regions for outages caused by severe weather is different in summer and in winter.
 
-We select only the useful columns and rows that correspond to outages happened in summer or winter. The first few rows of this subset of data is shown below.
+We select only the useful columns and rows that correspond to outages caused by severe weather in summer or winter. The first few rows of this subset of data are shown below.
 
 | YEAR | MONTH | CLIMATE.REGION | CAUSE.CATEGORY | CAUSE.CATEGORY.DETAIL |
 |------|-------|-----------------|----------------|------------------------|
@@ -263,4 +263,3 @@ We run permutation tests for 10000 times and the graph shows the distribution of
 The p-value we get is 0.0312, which means that at a significant level of 0.05, we are able to reject the null hypothesis that the distribution of climate regions for outages caused by severe weather is the same in summer and in winter.
 
 This result is reasonable because different climate regions often experience very different weather, including severe weather, and certain severe weather events tend to happen in specific season/time of the year. For example, certain regions tend to get more winter storms, and consequently more outages due to winter storms, during winter. Certain regions tend to get more wildfire, and consequently more outages due to wildfire, during summer. Thus, it makes sense that we see different distributions for outages casued by severe weather in terms of the climate region in different seasons. 
-
