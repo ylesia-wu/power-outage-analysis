@@ -193,7 +193,7 @@ We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 ti
 
 <iframe src="assets/mar_depend.html" width=800 height=600 frameBorder=0></iframe>
 
-Finally, we get a p-value of 0. When using 0.05 as the significance level, since 0.0 $\leq$ 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`. It is likely that certain states paid more attention to recording the demand loss whereas others found it less important. 
+Finally, we get a p-value of 0. When using 0.05 as the significance level, since 0.0 < 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`. It is likely that certain states paid more attention to recording the demand loss whereas others found it less important. 
 
 > the missingness of `DEMAND.LOSS.MW` and `RES.PERCEN`
 
