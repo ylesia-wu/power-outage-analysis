@@ -240,7 +240,7 @@ We select only the useful columns and rows that correspond to outages caused by 
 
 Since we are concerned with categorical data, it is proper to use TVD as the test statistics.
 
-We choose to perform an one-sided test because TVD only determines how different two distributions are. The greater the TVD, the greater the difference.
+We choose to perform a one-sided test because TVD only determines how different two distributions are. The greater the TVD, the greater the difference.
 
 The significant level we choose is `0.05`.
 
