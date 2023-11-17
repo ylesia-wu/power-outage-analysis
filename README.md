@@ -206,12 +206,11 @@ We also drew distribution plots of these two distributions.
 
 <iframe src="assets/res_percen_demand_not_missing.html" width=800 height=600 frameBorder=0></iframe>
 
-Under the hood, ks_2samp used permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` and got the p-value of 0.23392391909317375. 
 We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 times and get 10000 simulated results of Kolmogorov-Smirnov statistic. The red line marked the observed stat.
 
 <iframe src="assets/mar_not_depend.html" width=800 height=600 frameBorder=0></iframe>
 
-We use 0.05 as a significance threshold. Since the p-value 0.23 > 0.05, we fail to reject the null hypothesis that the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is not dependent on `RES.PERCEN`.
+The p-value we got was 0.2282. We use 0.05 as a significance threshold. Since the p-value 0.2282 > 0.05, we fail to reject the null hypothesis that the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `RES.PERCEN` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is not dependent on `RES.PERCEN`.
 
 ## Hypothesis Testing
 
