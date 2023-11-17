@@ -1,6 +1,6 @@
 # Power Outages 🔋 Project
 
-This is the [Project 3](https://ylesia-wu.github.io/power-outage-analysis/) under University of California San Diego course DSC80.
+This is a course project under University of California San Diego course DSC80.
 
 By Ylesia Wu & Junyue Lin
 
