@@ -1,8 +1,8 @@
 # Power Outages 🔋 Project
 
-This is a course project under University of California San Diego course DSC80.
+By Yi Xing Ylesia Wu & Junyue Lin
 
-By Ylesia Wu & Junyue Lin
+This is a course project under University of California San Diego course DSC80.
 
 ## Introduction
 
@@ -193,7 +193,7 @@ We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 ti
 
 <iframe src="assets/mar_depend.html" width=800 height=600 frameBorder=0></iframe>
 
-Finally, we get a p-value of 0. When using 0.05 as the significance level, since 0.0 < 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`. It is likely that certain states paid more attention to recording the demand loss whereas others found it less important. 
+Finally, we get a p-value of 0. When using 0.05 as the significance level, since 0.0 $\leq$ 0.05, we reject the null hypothesis that the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing is the same as the distribution of the `CLIMATE.REGION` when `DEMAND.LOSS.MW` is not missing. In other words, the missingness of `DEMAND.LOSS.MW` is MAR because it depends on the column `CLIMATE.REGION`. It is likely that certain states paid more attention to recording the demand loss whereas others found it less important. 
 
 > the missingness of `DEMAND.LOSS.MW` and `RES.PERCEN`
 
@@ -263,3 +263,4 @@ We run permutation tests for 10000 times and the graph shows the distribution of
 The p-value we get is 0.0312, which means that at a significant level of 0.05, we are able to reject the null hypothesis that the distribution of climate regions for outages caused by severe weather is the same in summer and in winter.
 
 This result is reasonable because different climate regions often experience very different weather, including severe weather, and certain severe weather events tend to happen in specific season/time of the year. For example, certain regions tend to get more winter storms, and consequently more outages due to winter storms, during winter. Certain regions tend to get more wildfire, and consequently more outages due to wildfire, during summer. Thus, it makes sense that we see different distributions for outages casued by severe weather in terms of the climate region in different seasons. 
+
