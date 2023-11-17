@@ -236,15 +236,11 @@ We would select only the useful columns and rows that correspond to outages happ
 | 2000 | 8.0   | Southeast       | severe weather | NaN                    |
 | 2000 | 8.0   | Central         | severe weather | NaN                    |
 
+Since we are concerned with categorical data, it is proper to use TVD as the test statistics.
 
 The reason for choosing one-sided test is that TVD only determines how different two distributions are. The greater the TVD, the greater the difference.
 
-| complex   |   n_steps |   ave_rating |
-|:----------|----------:|-------------:|
-| False     |   6.35718 |      4.50184 |
-| True      |  16.1414  |      4.48441 |
-
-Since we are concerned with categorical data, it is proper to use TVD as the test statistics. In this part of the research, the significant level we choose is `0.05`.
+In this part of the research, the significant level we choose is `0.05`.
 
 The observed difference in mean is `0.14705565819447183`.
 
