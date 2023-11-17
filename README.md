@@ -122,11 +122,15 @@ The plot above shows the distribution of `CAUSE.CATEGORY`. It appears that outag
 
 ### Bivariate Analysis
 
-Then, we do a bivariate analysis between TODO!
+Then, we do a bivariate analysis between `CAUSE.CATEGORY` and `OUTAGE.DURATION` and another one between `CAUSE.CATEGORY` and `U.S._STATE`.
 
+<iframe src="assets/bivariate_cause_duration_box.html" width=800 height=600 frameBorder=0></iframe>
 
-<iframe src="assets/TODO" width=800 height=600 frameBorder=0></iframe>
+The plot above shows the distribution of `OUTAGE.DURATION` per `CAUSE.CATEGORY`. It appears that outages caused by fuel supply emergency tend to last longer, followed by outages caused by severe weather, both having relatively high 75th percentile and median.
 
+<iframe src="assets/bivariate_state_category.html" width=800 height=600 frameBorder=0></iframe>
+
+The plost above shows the distribution of outages per `U.S._STATE` and per `CAUSE.CATEGORY`. California seems to have a surprisingly high total number of outages, over 200. Severe weather seems to the top one cause of power outage for a majority of the states because we can observe that the the bars of many states have a high blue proportion.
 
 ### Interesting Aggregates
 
@@ -177,9 +181,10 @@ Alternative hypothesis: the distribution of the `CLIMATE.REGION` when `DEMAND.LO
 Test Statistics: Since `CLIMATE.REGION` is a categorical variable. We used Total variation distance (TVD) as the test statistics.
 Observed Statistics: 0.23159749848146532
 
-We drew distribution plots about these two distributions.
+We drew distribution plots of these two distributions.
 
 <iframe src="assets/region_demand_missing.html" width=800 height=600 frameBorder=0></iframe>
+
 <iframe src="assets/region_demand_not_missing.html" width=800 height=600 frameBorder=0></iframe>
 
 We use permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` 10000 times and get 10000 simulating results of TVD. The red line marked the observed stat. 
@@ -195,9 +200,10 @@ Alternative hypothesis: the distribution of the `RES.PERCEN` when `DEMAND.LOSS.M
 Test Statistics: Since `RES.PERCEN` is a numeric variable. We used Kolmogorov-Smirnov statistic as the test statistics.
 Observed Statistics: 0.05247542540358801
 
-We also drew distribution plots for these two distributions. 
+We also drew distribution plots of these two distributions. 
 
 <iframe src="assets/res_percen_demand_missing.html" width=800 height=600 frameBorder=0></iframe>
+
 <iframe src="assets/res_percen_demand_not_missing.html" width=800 height=600 frameBorder=0></iframe>
 
 Under the hood, ks_2samp used permutation tests to shuffle the missingness of `DEMAND.LOSS.MW` and got the p-value of 0.23392391909317375. 
@@ -210,7 +216,7 @@ We use 0.05 as a significance threshold. Since the p-value 0.23 > 0.05, we fail 
 
 The question we are going to research on is that: are the geographical distributions of the number of outages caused by severe weather different in summer vs. in winter? 
 
-First, we created a new column called `season`, dividing the `MONTH` values into four groups: spring for month 3,4,5; summer for month 6,7,8; fall for month 9,10,11; winter for month 12,1,2. 
+First, we created a new column called `season`, dividing the `MONTH` values into four groups: spring for months 3,4,5; summer for months 6,7,8; fall for months 9,10,11; winter for months 12,1,2. 
 
 We will conduct a permutation test.
 
@@ -218,32 +224,39 @@ We will conduct a permutation test.
 
 Null Hypothesis H0: The distribution of climate regions for outages caused by severe weather is the same in summer and in winter.
 
-Alternative Hypothesis H1: The distribution of climate regions for outages caused by severe weather is the same in summer and in winter.
+Alternative Hypothesis H1: The distribution of climate regions for outages caused by severe weather is different in summer and in winter.
 
-We would select only the useful column, including n_steps and average rating, and also create new column named `complex`, which is true if it has steps more than 10 and false if has steps less or equal to 10.
+We would select only the useful columns and rows that correspond to outages happened in summer or winter.
 
-|     id |   n_steps |   ave_rating | complex   |
-|-------:|----------:|-------------:|:----------|
-| 333281 |        10 |            4 | False     |
-| 453467 |        12 |            5 | True      |
-| 306168 |         6 |            5 | False     |
-| 286009 |         7 |            5 | False     |
-| 475785 |        17 |            5 | True      |
+| YEAR | MONTH | CLIMATE.REGION | CAUSE.CATEGORY | CAUSE.CATEGORY.DETAIL |
+|------|-------|-----------------|----------------|------------------------|
+| 2000 | 1.0   | Southeast       | severe weather | winter storm           |
+| 2000 | 1.0   | Southeast       | severe weather | winter storm           |
+| 2000 | 6.0   | Southwest       | severe weather | wildfire              |
+| 2000 | 8.0   | Southeast       | severe weather | NaN                    |
+| 2000 | 8.0   | Central         | severe weather | NaN                    |
 
-The reason for choosing one-sided test is that we might assume people could feel frustrated when cooking complex recipes, and also recipes with more steps are harder to cook
+
+The reason for choosing one-sided test is that TVD only determines how different two distributions are. The greater the TVD, the greater the difference.
 
 | complex   |   n_steps |   ave_rating |
 |:----------|----------:|-------------:|
 | False     |   6.35718 |      4.50184 |
 | True      |  16.1414  |      4.48441 |
 
-Since ave_rating is numerical data, so it is proper to use the difference in mean as test statistics. In the part of research, the significant level we choose is `0.05`
+Since we are concerned with categorical data, it is proper to use TVD as the test statistics. In this part of the research, the significant level we choose is `0.05`.
 
-The observed difference in mean is `0.017428379224658563`
+The observed difference in mean is `0.14705565819447183`.
+
+We drew distribution plots of these two distributions.
+
+<iframe src="assets/summer_region.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/winter_region.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Permutation Test
 
-<iframe src="assets/TODO" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/hypo_test.html" width=800 height=600 frameBorder=0></iframe>
 
 We ran permutation tests for 10000 times and the graph shows the distribution of permutation test results. The red line marks the observed value.
 
@@ -251,5 +264,5 @@ We ran permutation tests for 10000 times and the graph shows the distribution of
 
 The P-value for the testing is 0.0312, which means that at significant level of 0.05, we are able to reject the null hypothesis.
 
-This result could be reasonable since first, high level complexity of a recipes could mean difficulties in cooking the dish and increasing probability in failing. If people fail to cook the dish, they might give low rating to the recipe. Also, people might have higher expectation on the dish if it is complex and hard to make. Then, people might have a more strict rating scale for complex recipes. 
+This result is reasonable because different climate regions often experience very different weather, including severe weather, and certain severe weather events tend to happen in specific season/time of the year. For example, certain regions tend to get more winter storms, and consequently more outages due to winter storms, during winter. Certain regions tend to get more wildfire, and consequently more outages due to wildfire, during summer. Thus, it makes sense that we see different distributions for outages casued by severe weather in terms of the climate region in different seasons. 
 
