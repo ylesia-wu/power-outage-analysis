@@ -2,8 +2,6 @@
 
 By Yi Xing Ylesia Wu & Junyue Lin
 
-This is a course project under University of California San Diego course DSC80.
-
 ## Introduction
 
 A power outage is defined as the loss of the electrical power network supply to an end user. This occurrence engenders a disruption in the provision of electricity, leading to an absence of power in residences, commercial establishments, and other facilities. The ramifications of power outages encompass a spectrum of effects, including the loss of lighting, disruption of appliances and electronic devices, deprivation of heating or cooling services, compromised communication, interruption of essential services, and the spoilage of perishable goods. Power outages might potentially impact individuals' lives and lead to financial loss. Consequently, it is necessary to examine the patterns associated with the cause of power outages to formulate effective responses to such events.
